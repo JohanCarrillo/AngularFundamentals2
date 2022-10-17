@@ -1,0 +1,20 @@
+<div class="grandpa-container">
+  <h1>I'm {{ myName }}</h1>
+
+  <div>
+    This is my son:
+    <app-parent
+      [fromGrandpaToParent]="fromGrandpaToParent"
+      [fromGrandpaToChild]="fromGrandpaToChild"
+      [grandpaName]="myName"
+      (parentEmitterToGrandpa)="setReceivedFromParent($event)"
+      (childEmitterToGrandpa)="setReceivedFromChild($event)"
+    ></app-parent>
+    <div *ngIf="receivedFromParent">
+      my son sent me <strong>{{ receivedFromParent }}</strong>
+    </div>
+    <div *ngIf="receivedFromChild">
+      my grandson sent me <strong>{{ receivedFromChild }}</strong>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="parent-container">
+  <h2>I'm {{ myName }}</h2>
+
+  <div>
+    I receive <strong>{{ fromGrandpaToParent }}</strong> from
+    <strong>{{ grandpaName }}</strong>
+  </div>
+
+  <br />
+
+  <div>
+    This my son:
+    <app-child
+      [parentName]="myName"
+      [fromParentToChild]="fromParentToChild"
+      [fromGrandpaToChild]="fromGrandpaToChild"
+      [grandpaName]="grandpaName"
+      (childEmitterToParent)="setReceivedFromChild($event)"
+      (childEmitterToGrandpa)="sendFromChildToGrandpa($event)"
+    >
+    </app-child>
+    <div *ngIf="receivedFromChild">
+      My son sent me <strong>{{ receivedFromChild }}</strong>
+    </div>
+    <button type="button" (click)="sendFromParentToGrandpa(sendToGrandpa)">
+      send to grandpa!
+    </button>
+  </div>
+</div>
