@@ -11,14 +11,12 @@
       (childEmitterToGrandpa)="setReceivedFromChild($event)"
     ></app-parent>
     <div *ngIf="receivedFromParent.length > 0">
-      <div *ngFor="let message of receivedFromParent">
-        my son sent me this message: <strong>{{ message.message }}</strong>
-      </div>
+      <h4>My son only sends me bad messages:</h4>
+      <div>{{ receivedFromParent | badMessage }}</div>
     </div>
     <div *ngIf="receivedFromChild.length > 0">
-      <div *ngFor="let message of receivedFromChild">
-        my grandson sent me <strong>{{ message.message }}</strong>
-      </div>
+      <h4>My grandson only sends me good messages:</h4>
+      <div>{{ receivedFromChild | goodMessage }}</div>
     </div>
   </div>
 </div>

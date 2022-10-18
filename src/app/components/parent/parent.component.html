@@ -2,8 +2,9 @@
   <h2>I'm {{ myName }}</h2>
 
   <div>
-    I receive <strong>{{ fromGrandpaToParent }}</strong> from
-    <strong>{{ grandpaName }}</strong>
+    I receive
+    <strong>{{ fromGrandpaToParent | upperLowerCaseRandomize }}</strong> from
+    <strong>{{ grandpaName | upperLowerCaseRandomize }}</strong>
   </div>
 
   <br />
@@ -26,10 +27,12 @@
       (childEmitterToGrandpa)="sendFromChildToGrandpa($event)"
     >
     </app-child>
+
     <div *ngIf="receivedFromChild.length > 0">
-      <div *ngFor="let message of receivedFromChild">
-        My son sent me <strong>{{ message.message }}</strong>
-      </div>
+      <h4>My son only sends me bad messages:</h4>
+      <div>{{ receivedFromChild | badMessage }}</div>
+      <h4>But sometimes he sends me good ones:</h4>
+      <div>{{ receivedFromChild | goodMessage }}</div>
     </div>
     <button type="button" (click)="sendFromParentToGrandpa(sendToGrandpa)">
       send to grandpa!

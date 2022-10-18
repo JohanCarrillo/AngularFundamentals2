@@ -4,6 +4,7 @@ import { IMessage } from '../interfaces/message.interface';
 @Pipe({ name: 'goodMessage', pure: false })
 export class GoodMessagePipe implements PipeTransform {
   transform(messages: IMessage[]) {
-    return messages.filter((message) => message.goodOrBad === 'good');
+    const newArray = messages.filter((message) => message.goodOrBad === 'good');
+    return newArray.map((messages) => ' ' + messages.message);
   }
 }

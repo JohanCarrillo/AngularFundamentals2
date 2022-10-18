@@ -2,12 +2,12 @@
   <h3>I'm {{ myName }}</h3>
   <div>
     <p>
-      I receive <strong>{{ fromParentToChild }}</strong> from
-      <strong>{{ parentName }}</strong>
+      I receive <strong>{{ fromParentToChild | uppercase }}</strong> from
+      <strong>{{ parentName | lowercase }}</strong>
     </p>
     <p>
-      I receive <strong>{{ fromGrandpaToChild }}</strong> from
-      <strong>{{ grandpaName }}</strong>
+      I receive <strong>{{ fromGrandpaToChild | uppercase }}</strong> from
+      <strong>{{ grandpaName | lowercase }}</strong>
     </p>
     <div class="form-container">
       <h4>Send a message to {{ parentName }}</h4>
