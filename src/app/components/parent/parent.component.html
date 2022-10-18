@@ -8,6 +8,13 @@
 
   <br />
 
+  <app-message-form
+    [buttonText]="'Send to my parent'"
+    (emitMessage)="sendFromParentToGrandpa($event)"
+  ></app-message-form>
+
+  <br />
+
   <div>
     This my son:
     <app-child
@@ -19,8 +26,10 @@
       (childEmitterToGrandpa)="sendFromChildToGrandpa($event)"
     >
     </app-child>
-    <div *ngIf="receivedFromChild">
-      My son sent me <strong>{{ receivedFromChild }}</strong>
+    <div *ngIf="receivedFromChild.length > 0">
+      <div *ngFor="let message of receivedFromChild">
+        My son sent me <strong>{{ message.message }}</strong>
+      </div>
     </div>
     <button type="button" (click)="sendFromParentToGrandpa(sendToGrandpa)">
       send to grandpa!

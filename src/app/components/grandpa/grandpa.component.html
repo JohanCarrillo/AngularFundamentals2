@@ -10,11 +10,15 @@
       (parentEmitterToGrandpa)="setReceivedFromParent($event)"
       (childEmitterToGrandpa)="setReceivedFromChild($event)"
     ></app-parent>
-    <div *ngIf="receivedFromParent">
-      my son sent me <strong>{{ receivedFromParent }}</strong>
+    <div *ngIf="receivedFromParent.length > 0">
+      <div *ngFor="let message of receivedFromParent">
+        my son sent me this message: <strong>{{ message.message }}</strong>
+      </div>
     </div>
-    <div *ngIf="receivedFromChild">
-      my grandson sent me <strong>{{ receivedFromChild }}</strong>
+    <div *ngIf="receivedFromChild.length > 0">
+      <div *ngFor="let message of receivedFromChild">
+        my grandson sent me <strong>{{ message.message }}</strong>
+      </div>
     </div>
   </div>
 </div>

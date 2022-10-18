@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IMessage } from 'src/app/interfaces/message.interface';
 
 @Component({
   selector: 'app-child',
@@ -9,12 +10,12 @@ export class ChildComponent implements OnInit {
   myName: string = 'ChildComponent';
 
   // outputs
-  sendToParent: string = 'una maldad >:(';
-  sendToGrandpa: string = 'un abrazo :D';
-  @Output() childEmitterToParent: EventEmitter<string> =
-    new EventEmitter<string>();
-  @Output() childEmitterToGrandpa: EventEmitter<string> =
-    new EventEmitter<string>();
+  sendToParent!: IMessage;
+  sendToGrandpa!: IMessage;
+  @Output() childEmitterToParent: EventEmitter<IMessage> =
+    new EventEmitter<IMessage>();
+  @Output() childEmitterToGrandpa: EventEmitter<IMessage> =
+    new EventEmitter<IMessage>();
 
   // inputs
   @Input() fromParentToChild!: string;
@@ -27,11 +28,11 @@ export class ChildComponent implements OnInit {
   ngOnInit(): void {}
 
   // emitter methods
-  sendFromChildToParent(message: string): void {
+  sendFromChildToParent(message: IMessage): void {
     this.childEmitterToParent.emit(message);
   }
 
-  sendFromChildToGrandpa(message: string): void {
+  sendFromChildToGrandpa(message: IMessage): void {
     this.childEmitterToGrandpa.emit(message);
   }
 }

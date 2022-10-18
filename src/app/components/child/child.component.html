@@ -1,0 +1,27 @@
+<div class="child-container">
+  <h3>I'm {{ myName }}</h3>
+  <div>
+    <p>
+      I receive <strong>{{ fromParentToChild }}</strong> from
+      <strong>{{ parentName }}</strong>
+    </p>
+    <p>
+      I receive <strong>{{ fromGrandpaToChild }}</strong> from
+      <strong>{{ grandpaName }}</strong>
+    </p>
+    <div class="form-container">
+      <h4>Send a message to {{ parentName }}</h4>
+      <app-message-form
+        [buttonText]="'Send to Parent'"
+        (emitMessage)="sendFromChildToParent($event)"
+      ></app-message-form>
+    </div>
+    <div class="form-container">
+      <h4>Send a message to {{ grandpaName }}</h4>
+      <app-message-form
+        [buttonText]="'Send to Grandpa'"
+        (emitMessage)="sendFromChildToGrandpa($event)"
+      ></app-message-form>
+    </div>
+  </div>
+</div>

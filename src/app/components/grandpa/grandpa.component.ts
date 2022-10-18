@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IMessage } from 'src/app/interfaces/message.interface';
 
 @Component({
   selector: 'app-grandpa',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrandpaComponent implements OnInit {
   // inputs
-  receivedFromParent!: string;
-  receivedFromChild!: string;
+  receivedFromParent: IMessage[] = [];
+  receivedFromChild: IMessage[] = [];
 
   // outputs
   myName: string = 'GrandpaComponent';
@@ -18,11 +19,11 @@ export class GrandpaComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  setReceivedFromParent(message: string): void {
-    this.receivedFromParent = message;
+  setReceivedFromParent(message: IMessage): void {
+    this.receivedFromParent.push({ ...message });
   }
 
-  setReceivedFromChild(message: string): void {
-    this.receivedFromChild = message;
+  setReceivedFromChild(message: IMessage): void {
+    this.receivedFromChild.push({ ...message });
   }
 }

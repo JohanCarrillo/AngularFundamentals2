@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IMessage } from 'src/app/interfaces/message.interface';
 
 @Component({
   selector: 'app-parent',
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ParentComponent implements OnInit {
   // inputs
-  receivedFromChild!: string;
+  receivedFromChild: IMessage[] = [];
   @Input() fromGrandpaToParent!: string;
   @Input() grandpaName!: string;
   @Input() fromGrandpaToChild!: string;
@@ -15,24 +16,24 @@ export class ParentComponent implements OnInit {
   // outputs
   myName: string = 'ParentComponent';
   fromParentToChild: string = 'una pela';
-  sendToGrandpa: string = 'maltrato al nieto D:<';
-  @Output() parentEmitterToGrandpa: EventEmitter<string> =
-    new EventEmitter<string>();
-  @Output() childEmitterToGrandpa: EventEmitter<string> =
-    new EventEmitter<string>();
+  sendToGrandpa!: IMessage;
+  @Output() parentEmitterToGrandpa: EventEmitter<IMessage> =
+    new EventEmitter<IMessage>();
+  @Output() childEmitterToGrandpa: EventEmitter<IMessage> =
+    new EventEmitter<IMessage>();
   constructor() {}
 
   ngOnInit(): void {}
 
-  setReceivedFromChild(message: string): void {
-    this.receivedFromChild = message;
+  setReceivedFromChild(message: IMessage): void {
+    this.receivedFromChild.push({ ...message });
   }
 
-  sendFromParentToGrandpa(message: string): void {
+  sendFromParentToGrandpa(message: IMessage): void {
     this.parentEmitterToGrandpa.emit(message);
   }
 
-  sendFromChildToGrandpa(message: string): void {
+  sendFromChildToGrandpa(message: IMessage): void {
     this.childEmitterToGrandpa.emit(message);
   }
 }
